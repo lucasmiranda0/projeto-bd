@@ -51,6 +51,14 @@ public class OrderModel {
     @JoinColumn(name = "fk", referencedColumnName = "OrderID")
     private List<OrderDetailsModel> detalhes = new ArrayList<>();
     
+    
+    
+    public int getOrderID() {
+        return OrderID;
+    }
+    public void setOrderID(int orderID) {
+        OrderID = orderID;
+    }
     public String getCustomerID() {
         return CustomerID;
     }

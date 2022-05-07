@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class OrderDto {
     
+    private int OrderID;
     private String CustomerID;
     private int EmployeeID;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
@@ -23,6 +24,14 @@ public class OrderDto {
     private String ShipPostalCode;
     private String ShipCountry;
     
+    
+
+    public int getOrderID() {
+        return OrderID;
+    }
+    public void setOrderID(int orderID) {
+        OrderID = orderID;
+    }
     public String getCustomerID() {
         return CustomerID;
     }
