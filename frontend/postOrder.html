@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.6.4.js"></script>
+    <title>Inserção de Pedido</title>
+</head>
+<body>
+    <div class="display">
+        <form>
+            <label for="customerID">Customer ID:</label><br>
+            <input type="text" id="customerID" name="customerID"><br>
+            <label for="employeeID">Employee ID:</label><br>
+            <input type="text" id="employeeID" name="employeeID"><br>
+            <label for="orderDate">Order Date:</label><br>
+            <input type="text" id="orderDate" name="orderDate"><br>
+            <label for="requiredDate">Required Date:</label><br>
+            <input type="text" id="requiredDate" name="requiredDate"><br>
+            <label for="shippedDate">Shipped Date:</label><br>
+            <input type="text" id="shippedDate" name="shippedDate"><br>
+            <label for="shipVia">Ship Via:</label><br>
+            <input type="text" id="shipVia" name="shipVia"><br>
+            <label for="freight">Freight:</label><br>
+            <input type="text" id="freight" name="freight"><br>
+            <label for="shipName">Ship Name:</label><br>
+            <input type="text" id="shipName" name="shipName"><br>
+            <label for="shipAddress">Ship Address:</label><br>
+            <input type="text" id="shipAddress" name="shipAddress"><br>
+            <label for="shipCity">Ship City:</label><br>
+            <input type="text" id="shipCity" name="shipCity"><br>
+            <label for="shipRegion">Ship Region:</label><br>
+            <input type="text" id="shipRegion" name="shipRegion"><br>
+            <label for="shipPostalCode">Ship Postal Code:</label><br>
+            <input type="text" id="shipPostalCode" name="shipPostalCode"><br>
+            <label for="shipCountry">Ship Country:</label><br>
+            <input type="text" id="shipCountry" name="shipCountry"><br>
+            <label for="discount">Discount:</label><br>
+            <input type="text" id="discount" name="discount"><br>
+            <label for="productID">Product ID:</label><br>
+            <input type="text" id="productID" name="productID"><br> 
+            <label for="quantity">Quantity:</label><br>
+            <input type="text" id="quantity" name="quantity"><br>
+            <label for="unitPrice">Unit Price:</label><br>
+            <input type="text" id="unitPrice" name="unitPrice"><br>
+        </form>
+        <button onclick="teste()">Post</button>
+       
+    </div>
+    <script>
+        function teste() {   
+            const customerID = document.getElementById('customerID').value;             
+            const employeeID = document.getElementById('employeeID').value;             
+            const orderDate = document.getElementById('orderDate').value;             
+            const requiredDate = document.getElementById('requiredDate').value;             
+            const shippedDate = document.getElementById('shippedDate').value;             
+            const shipVia = document.getElementById('shipVia').value;             
+            const freight = document.getElementById('freight').value;             
+            const shipName = document.getElementById('shipName').value;             
+            const shipAddress = document.getElementById('shipAddress').value;             
+            const shipCity = document.getElementById('shipCity').value;             
+            const shipRegion = document.getElementById('shipRegion').value;             
+            const shipPostalCode = document.getElementById('shipPostalCode').value;             
+            const shipCountry = document.getElementById('shipCountry').value;             
+            const discount = document.getElementById('discount').value;                         
+            const productID = document.getElementById('productID').value;                     
+            const quantity = document.getElementById('quantity').value;                         
+            const unitPrice = document.getElementById('unitPrice').value;                                 
+             
+            var xhr = new XMLHttpRequest();
+            var url = "http://localhost:8080/orders";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    console.log(json.email + ", " + json.password);
+                }
+            };
+            var data = JSON.stringify({            
+                "customerID": customerID,
+                "employeeID": employeeID,
+                "orderDate": orderDate,
+                "requiredDate": requiredDate,
+                "shippedDate": shippedDate,
+                "shipVia": shipVia,
+                "freight": freight,
+                "shipName": shipName,
+                "shipAddress": shipAddress,
+                "shipCity": shipCity,
+                "shipRegion": shipRegion,
+                "shipPostalCode": shipPostalCode,
+                "shipCountry": shipCountry,
+                "detalhes": [
+                    {
+                        "discount": discount,
+                        "productID": productID,
+                        "quantity": quantity,
+                        "unitPrice": unitPrice
+                    }
+                ]
+            });
+            console.log(data);
+            xhr.send(data);
+        }
+    </script>
+    
+</body>
+</html>
